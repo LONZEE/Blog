@@ -21,31 +21,31 @@ const blog =[
 
 let indexBlog = 0; // Initialize the blog index
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { // Wait for the DOM to load
     createBlog(); // Call createBlog to display the first blog
-    const blogContainer = document.querySelector('.blog-container');
-    blogContainer.addEventListener('click', (e) => {
-        if(e.target.classList.contains('prev-btn')){
-            indexBlog--;
-            if(indexBlog < 0){
-                indexBlog = blog.length - 1;
+    const blogContainer = document.querySelector('.blog-container'); // Get the blog container
+    blogContainer.addEventListener('click', (e) => {  // Add event listener to the blog container
+        if(e.target.classList.contains('prev-btn')){ // Check if the previous button is clicked
+            indexBlog--; // Decrease the indexBlog
+            if(indexBlog < 0){ // Check if the indexBlog is less than 0
+                indexBlog = blog.length - 1; // Set the indexBlog to the last blog index
             }
-            createBlog();
+            createBlog(); // Call createBlog to display the blog
         }
-        if(e.target.classList.contains('next-btn')){
-            indexBlog++;
-            if(indexBlog > blog.length - 1){
-                indexBlog = 0;
+        if(e.target.classList.contains('next-btn')){ // Check if the next button is clicked
+            indexBlog++; // Increase the indexBlog
+            if(indexBlog > blog.length - 1){ // Check if the indexBlog is greater than the last blog index
+                indexBlog = 0; // Set the indexBlog to the first blog index
             }
-            createBlog();
+            createBlog(); // Call createBlog to display the blog
         }
     });
 });
-function createBlog(){
-    const blogContainer = document.querySelector('.blog-container');
+function createBlog(){ // Function to display the blog
+    const blogContainer = document.querySelector('.blog-container'); // Get the blog container
     blogContainer.innerHTML = ''; // Clear the container before displaying a new blog
-    const blogDiv = document.createElement('div');
-    blogDiv.classList.add('blog');
+    const blogDiv = document.createElement('div'); // Create a div element
+    blogDiv.classList.add('blog'); // Add a class to the div
     const currentBlog = blog[indexBlog]; // Get the current blog based on indexBlog
     blogDiv.innerHTML = `
     <h2>${currentBlog.title}</h2>
@@ -54,7 +54,7 @@ function createBlog(){
     <br>
     <button class="prev-btn">Previous</button>
     <button class="next-btn">Next</button>`;
-    blogContainer.appendChild(blogDiv);
+    blogContainer.appendChild(blogDiv); // Append the div to the blog container
 }
 
 
